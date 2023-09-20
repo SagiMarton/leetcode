@@ -8,6 +8,7 @@
 int lengthOfLongestSubstring(std::string s){
     std::unordered_map<char,int>* letters = new std::unordered_map<char,int>();
     int length = 0;
+    int maxlength = 0;
     if (!s.empty())
     {
         
@@ -17,19 +18,22 @@ int lengthOfLongestSubstring(std::string s){
             {
                 letters->insert(std::make_pair(s[i],i));
                 length++;
+                if (length > maxlength)
+                    maxlength = length;
             }
             else
             {
+                length = 0;
                 i = letters->at(s[i]);
-                
+                letters->clear();
             }
         }
 
     }
     
 
-
-    return length;
+    delete letters;
+    return maxlength;
 }
 
 int main() {
