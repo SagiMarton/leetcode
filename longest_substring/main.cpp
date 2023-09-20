@@ -25,7 +25,7 @@ int lengthOfLongestSubstring(std::string s)
             }
             else
             {
-                int where = letters->at(s[i]);
+                int where = (*letters)[s[i]];
                 if (where < first)
                 {
                     
