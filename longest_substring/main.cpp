@@ -18,7 +18,7 @@ int lengthOfLongestSubstring(std::string s)
         {
             if (letters->find(s[i]) == letters->end())
             {
-                letters->insert(std::make_pair(s[i], i));
+                (*letters)[s[i]] = i;
                 length++;
                 if (length > maxlength)
                     maxlength = length;
@@ -28,8 +28,8 @@ int lengthOfLongestSubstring(std::string s)
                 int where = letters->at(s[i]);
                 if (where < first)
                 {
-                    letters->erase(s[i]);
-                    letters->insert(std::make_pair(s[i], i));
+                    
+                    (*letters)[s[i]] = i;
                     length++;
                     if (length > maxlength)
                         maxlength = length;
@@ -37,8 +37,7 @@ int lengthOfLongestSubstring(std::string s)
                 else
                 {
                     first = where + 1;
-                    letters->erase(s[i]);
-                    letters->insert(std::make_pair(s[i], i));
+                    (*letters)[s[i]] = i;
                     length = std::max(1, i + 1 - first);
                 }
             }
